@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -53,8 +54,14 @@ public class MovementService {
         return movementRepository.findAllByCuenta(cuenta);
     }
 
+    public List<Movimiento> getMovementsByAccountAndDates(Long numerocuenta, Date since, Date to){
+        Cuenta cuenta = accountRepository.findByNumeroCuenta(numerocuenta);
+        return movementRepository.findAllByCuentaAndDate(cuenta, since, to);
+    }
+
     public Integer deleteMovements(Long numerocuenta){
         Cuenta cuenta = accountRepository.findByNumeroCuenta(numerocuenta);
         return movementRepository.deleteAllByCuenta(cuenta);
     }
+
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,6 +37,11 @@ public class MovementController {
     @GetMapping("/api/movimiento/{numerocuenta}")
     List<Movimiento> GetMovementsByAccount(@PathVariable Long numerocuenta) {
         return movementService.getMovementsByAccount(numerocuenta);
+    }
+
+    @GetMapping("/api/movimiento/fecha/{numerocuenta}")
+    List<Movimiento> GetMovementsByAccountAndDates(@PathVariable Long numerocuenta, @RequestParam("startDate")Date since, @RequestParam("endDate") Date to) {
+        return movementService.getMovementsByAccountAndDates(numerocuenta, since, to);
     }
 
     @DeleteMapping("/api/movimiento/{numerocuenta}")
