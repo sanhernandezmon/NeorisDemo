@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @RestController
 public class AccountController {
@@ -21,8 +23,23 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping("/cuenta")
-    Cuenta newEmployee(@RequestBody Cuenta newCuenta, @RequestParam("clienteId") String clientId) {
+    @PostMapping("/api/cuenta")
+    Cuenta NewAccount(@RequestBody Cuenta newCuenta, @RequestParam("clienteId") String clientId) {
         return accountService.addAccount(newCuenta, clientId);
+    }
+
+    @GetMapping("/api/cuenta/{numerocuenta}")
+    Cuenta GetAccount(@PathVariable Long numerocuenta) {
+        return accountService.getAccountById(numerocuenta);
+    }
+
+    @GetMapping("/api/cuenta/user/{clienteid}")
+    List<Cuenta> GetAccount(@PathVariable String clienteid) {
+        return accountService.getAllByClient(clienteid);
+    }
+
+    @DeleteMapping("api/cuenta/{numerocuenta}")
+    Integer DeleteAccount(@PathVariable Long numerocuenta){
+        return accountService.deleteAccount(numerocuenta);
     }
 }

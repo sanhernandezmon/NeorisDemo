@@ -35,7 +35,6 @@ public class Movimiento {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "numerocuenta", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     Cuenta cuenta;
 

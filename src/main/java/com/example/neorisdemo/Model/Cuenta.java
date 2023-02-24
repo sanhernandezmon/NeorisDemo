@@ -6,11 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,12 +29,11 @@ public class Cuenta {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "personaid")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     Cliente cliente;
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<Movimiento> movimientos;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Movimiento> movimientos;
 
     @Override
     public String toString() {
@@ -48,7 +43,6 @@ public class Cuenta {
                 ", saldoInicial=" + saldoInicial +
                 ", estado=" + estado +
                 ", cliente=" + cliente +
-                ", movimientos=" + movimientos +
                 '}';
     }
 }

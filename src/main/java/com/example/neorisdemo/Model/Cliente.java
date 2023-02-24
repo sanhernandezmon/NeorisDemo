@@ -22,7 +22,7 @@ public class Cliente extends Persona{
     @Column(name = "estado")
     private Boolean estado;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Cuenta> cuentas;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<Cuenta> cuentas;
 
 }
