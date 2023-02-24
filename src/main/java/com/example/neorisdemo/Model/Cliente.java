@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Getter
@@ -18,5 +21,8 @@ public class Cliente extends Persona{
     private String contrasena;
     @Column(name = "estado")
     private Boolean estado;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Cuenta> cuentas;
 
 }
