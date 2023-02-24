@@ -1,10 +1,7 @@
 package com.example.neorisdemo.Controller;
 
-import com.example.neorisdemo.Model.Cliente;
 import com.example.neorisdemo.Model.Movimiento;
-import com.example.neorisdemo.Service.ClientService;
 import com.example.neorisdemo.Service.MovementService;
-import io.vavr.control.Either;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
